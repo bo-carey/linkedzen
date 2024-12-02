@@ -1,0 +1,27 @@
+<svg id="eqdrWGkEmf41" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 256 256" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+  project-id="c949fdc3c85a4e48b5a807350be30b60" export-id="fb4048e59eac40fa9866d0dff45ffda6"
+  cached="false">
+  <defs>
+    <linearGradient id="eqdrWGkEmf42-fill" x1="0.853553" y1="0.146447" x2="0.146447" y2="0.853553"
+      spreadMethod="pad" gradientUnits="objectBoundingBox" gradientTransform="translate(0 0)">
+      <stop id="eqdrWGkEmf42-fill-0" offset="0%" stop-color="#87dbf6" />
+      <stop id="eqdrWGkEmf42-fill-1" offset="100%" stop-color="#337ab6" />
+    </linearGradient>
+    <filter id="eqdrWGkEmf43-filter" x="-150%" width="400%" y="-150%" height="400%">
+      <feGaussianBlur id="eqdrWGkEmf43-filter-drop-shadow-0-blur" in="SourceAlpha"
+        stdDeviation="15,10" />
+      <feOffset id="eqdrWGkEmf43-filter-drop-shadow-0-offset" dx="-5" dy="5" result="tmp" />
+      <feFlood id="eqdrWGkEmf43-filter-drop-shadow-0-flood" flood-color="rgba(0,0,0,0.35)" />
+      <feComposite id="eqdrWGkEmf43-filter-drop-shadow-0-composite" operator="in" in2="tmp" />
+      <feMerge id="eqdrWGkEmf43-filter-drop-shadow-0-merge" result="result">
+        <feMergeNode id="eqdrWGkEmf43-filter-drop-shadow-0-merge-node-1" />
+        <feMergeNode id="eqdrWGkEmf43-filter-drop-shadow-0-merge-node-2" in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="40" ry="40" fill="url(#eqdrWGkEmf42-fill)" />
+  <path
+    d="M128,177c27.06195,0,49-21.93805,49-49s-21.93805-49-49-49-49,21.93805-49,49s21.93805,49,49,49ZM65,128c0-34.79394,28.20606-63,63-63s63,28.20606,63,63-28.20606,63-63,63-63-28.20606-63-63Zm63,77c42.80207,0,77.5-34.69793,77.5-77.5s-34.69793-77.5-77.5-77.5-77.5,34.69793-77.5,77.5s34.69793,77.5,77.5,77.5Z"
+    filter="url(#eqdrWGkEmf43-filter)" fill="none" stroke="#fff" stroke-width="7" />
+</svg>
