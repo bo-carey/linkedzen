@@ -1,0 +1,17 @@
+{
+  "name": "linkedzen",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "extension build",
+    "dev": "extension dev",
+    "dev:firefox": "extension dev --browser firefox",
+    "dev:chrome": "extension dev --browser chrome",
+    "dev:all": "extension dev --browser all",
+    "start": "extension start"
+  },
+  "devDependencies": {
+    "extension": "^2.0.0-beta.5",
+    "typescript": "~5.6.2"
+  }
+}
