@@ -1,8 +1,18 @@
+/* Hide Feed */
 .feed-new-update-pill__new-update-button,
 .feed-right-rail,
 .feed-shared-update-v2,
 .nav-item__badge--doughnut,
 .feed-shared-news-module,
 .feed-follows-module {
-	display: none !important;
+  display: none !important;
+}
+
+/* Hide Notification Bar */
+nav a[href*='notifications'] {
+  display: none !important;
+}
+
+.linkedzen-hide {
+  display: none !important;
 }

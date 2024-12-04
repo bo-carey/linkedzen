@@ -1,23 +1,37 @@
-// Messages cleanup
-// We just want to hide the sponsored messages for now.
-// In the future, we will add an option to automatically move sponsored messages and inmails to other
-// folders or delete them.
+import { debounce, logger } from './utils/general';
+import { hideSponsoredMessages } from './utils/messages';
 
-function getMessages() {
-  return document.querySelectorAll<HTMLDivElement>('div.msg-overlay-list-bubble__convo-card-content-wrapper');
+logger.debug('content script loaded');
+
+function setupMessagingObserver(retryDelay = 0) {
+  setTimeout(() => {
+    logger.debug('attempting messaging observer setup');
+    // Setup Message Observer
+    const messagingContainer = document.querySelector<HTMLDivElement>(
+      'aside div.msg-overlay-list-bubble'
+    );
+    if (!messagingContainer) {
+      logger.warn('messaging container not found, retrying...');
+      setupMessagingObserver(retryDelay + 100);
+      return;
+    }
+    const observer = new MutationObserver(debounce(hideSponsoredMessages, 100));
+    observer.observe(messagingContainer, { childList: true, subtree: true });
+
+    logger.debug('messaging observer setup complete');
+
+    // Clean up the observer when the page is unloaded
+    window.addEventListener('unload', () => {
+      logger.debug('unloading messaging observer');
+      observer.disconnect();
+    });
+  }, retryDelay);
 }
 
-const hideSponsoredMessages = () => {
-  const messages = getMessages();
-  messages.forEach((message) => {
-    const messageText = message.textContent;
-    const spamHeaders = ['Sponsored', 'InMail', 'via LinkedIn'];
-    if (spamHeaders.some((header) => messageText?.includes(header))) {
-      const entryPoint = message.closest<HTMLDivElement>('div.entry-point');
-      if (entryPoint) entryPoint.style.display = 'none';
-    }
-  });
-};
-
-const observer = new MutationObserver(hideSponsoredMessages);
-observer.observe(document.body, { childList: true, subtree: true });
+if (document.readyState === 'loading') {
+  logger.debug('waiting for DOMContentLoaded');
+  document.addEventListener('DOMContentLoaded', () => setupMessagingObserver());
+} else {
+  logger.debug('DOM already loaded');
+  setupMessagingObserver();
+}
