@@ -1,17 +1,24 @@
 {
   "name": "linkedzen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
-    "build": "extension build",
-    "dev": "extension dev",
+    "build": "npm run clean && run-s build:*",
+    "build:chrome": "extension build --browser chrome --zip true --zip-filename linkedzen-chrome",
+    "build:firefox": "extension build --browser firefox --zip true --zip-filename linkedzen-firefox --zip-source true",
+    "clean": "rm -rf dist",
+    "dev": "npm run clean && run-s dev:firefox dev:chrome",
     "dev:firefox": "extension dev --browser firefox",
     "dev:chrome": "extension dev --browser chrome",
-    "dev:all": "extension dev --browser all",
+    "dev:wsl": "npm run clean && run-s dev:wsl:*",
+    "dev:wsl:chrome": "extension dev --browser chrome --chromium-binary=\"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe\"",
+    "dev:wsl:firefox": "extension dev --browser firefox --profile=\"/mnt/c/Users/Bo/AppData/Roaming/Mozilla/Firefox/Profiles/46jwz93p.dev-edition-default\" --gecko-binary=\"/mnt/c/Program Files/Firefox Developer Edition/firefox.exe\"",
     "start": "extension start"
   },
   "devDependencies": {
     "extension": "^2.0.0-beta.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.4.2",
     "typescript": "~5.6.2"
   }
 }

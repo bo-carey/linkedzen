@@ -2,7 +2,7 @@
   "name": "LinkedZen",
   "description": "LinkedZen declutters your LinkedIn experience by hiding the main feed, sponsored content, and notifications. Stay focused and connected without distractions. Perfect for professionals seeking a calm and minimalist LinkedIn interface.",
   "manifest_version": 3,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "icons": {
     "16": "assets/logo-16.png",
     "48": "assets/logo-48.png",
@@ -11,15 +11,15 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "*://*.linkedin.com/*"
-      ],
-      "css": [
-        "src/style.css"
-      ],
-      "js": [
-        "src/content.ts"
-      ]
+      "matches": ["*://*.linkedin.com/*"],
+      "css": ["src/style.css"],
+      "js": ["src/content.ts"],
+      "run_at": "document_start"
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "linkedzen@bo-carey"
+    }
+  }
 }
