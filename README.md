@@ -37,7 +37,7 @@ We’re just getting started! Here are the features currently planned or in deve
 - [ ] **Customizable Filters**: Choose which sections to hide or display.  
 - [ ] **Keyword Muting**: Block posts or messages containing specific terms.  
 - [ ] **Dark Mode Support**: Seamless experience for LinkedIn’s dark theme.  
-- [ ] **Hide Sponsored Messages**: Keep your inbox focused on genuine communication.  
+- [x] **Hide Sponsored Messages**: Keep your inbox focused on genuine communication.  
 - [ ] **Configurable Notification Blocking**: Fine-tune which notifications you see.  
 - [ ] **Minimalist UI Options**: Toggle between various levels of interface simplicity.  
 
@@ -47,7 +47,7 @@ Feel free to suggest additional features by opening an issue!
 Special thanks to the open-source community for providing the tools and inspiration to build LinkedZen.
 
 ## **Feedback and Support**  
-Have ideas or found a bug? Open an issue or pull request on GitHub.
+Have ideas or found a bug? [Open an issue or pull request on GitHub](https://github.com/bo-carey/linkedzen).
 
 ---
 
