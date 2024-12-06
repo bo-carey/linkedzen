@@ -13,11 +13,11 @@ LinkedZen is a browser extension designed to declutter your LinkedIn experience.
 LinkedZen works on both **Chrome** and **Firefox**!  
 
 ### **For Chrome**  
-1. Download the latest release from the [Chrome Web Store](#).  
+1. Download the latest release from the [Chrome Web Store](https://chromewebstore.google.com/detail/linkedzen/dnikkfpiokknefbehlodocadfgkmgdem).  
 2. Add the extension to your browser and click "Enable."  
 
 ### **For Firefox**  
-1. Download the latest release from the [Firefox Add-ons Store](#).  
+1. Download the latest release from the [Firefox Add-ons Store](https://addons.mozilla.org/en-US/firefox/addon/linkedzen/).  
 2. Add the extension to your browser and click "Enable."  
 
 ## **Contributing**  
