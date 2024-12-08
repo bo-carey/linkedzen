@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "npm run clean && run-s build:*",
-    "build:chrome": "extension build --browser chrome --zip true --zip-filename linkedzen-chrome",
-    "build:firefox": "extension build --browser firefox --zip true --zip-filename linkedzen-firefox --zip-source true",
+    "build:chrome": "extension build --browser chrome --zip true --zip-filename linkedzen --zip-source true",
+    "build:firefox": "extension build --browser firefox --zip true --zip-filename linkedzen",
     "clean": "rm -rf dist",
     "dev": "npm run clean && run-s dev:firefox dev:chrome",
     "dev:firefox": "extension dev --browser firefox",
