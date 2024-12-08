@@ -11,7 +11,7 @@ function setupMessagingObserver(retryDelay = 0) {
       'aside div.msg-overlay-list-bubble'
     );
     if (!messagingContainer) {
-      logger.warn('messaging container not found, retrying...');
+      logger.debug('messaging container not found, retrying...');
       setupMessagingObserver(retryDelay + 100);
       return;
     }
