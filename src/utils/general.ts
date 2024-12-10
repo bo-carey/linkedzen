@@ -12,12 +12,20 @@ export const debounce = <T extends (...args: any[]) => any>(
   };
 };
 
-export const logger = {
-  log: (message: string) => console.log(`[LinkedZen] ${message}`),
-  error: (message: string) => console.error(`[LinkedZen] ${message}`),
-  warn: (message: string) => console.warn(`[LinkedZen] ${message}`),
-  info: (message: string) => console.info(`[LinkedZen] ${message}`),
+export const logger: Pick<
+  Console,
+  'log' | 'error' | 'warn' | 'info' | 'debug'
+> = {
+  log: (message: string, ...optionalParams: any[]) =>
+    console.log(`[LinkedZen] ${message}`, ...optionalParams),
+  error: (message: string, ...optionalParams: any[]) =>
+    console.error(`[LinkedZen] ${message}`, ...optionalParams),
+  warn: (message: string, ...optionalParams: any[]) =>
+    console.warn(`[LinkedZen] ${message}`, ...optionalParams),
+  info: (message: string, ...optionalParams: any[]) =>
+    console.info(`[LinkedZen] ${message}`, ...optionalParams),
   debug: isDev
-    ? (message: string) => console.debug(`[LinkedZen] ${message}`)
+    ? (message: string, ...optionalParams: any[]) =>
+        console.debug(`[LinkedZen] ${message}`, ...optionalParams)
     : () => {},
 };

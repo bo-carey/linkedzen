@@ -1,22 +1,26 @@
 {
+  "$schema": "https://json.schemastore.org/chrome-manifest",
   "name": "LinkedZen",
   "description": "LinkedZen declutters LinkedIn by hiding the feed, sponsored content, and notifications. Focus on connections without distractions.",
   "manifest_version": 3,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "icons": {
-    "16": "assets/logo-16.png",
-    "48": "assets/logo-48.png",
-    "128": "assets/logo-128.png",
-    "512": "assets/logo-512.png"
+    "16": "icons/logo-16.png",
+    "32": "icons/logo-32.png",
+    "48": "icons/logo-48.png",
+    "128": "icons/logo-128.png",
+    "512": "icons/logo-512.png"
   },
-  "content_scripts": [
-    {
-      "matches": ["*://*.linkedin.com/*"],
-      "css": ["src/style.css"],
-      "js": ["src/content.ts"],
-      "run_at": "document_start"
-    }
-  ],
+  "host_permissions": ["*://*.linkedin.com/*"],
+  "permissions": ["scripting", "storage"],
+  "background": {
+    "chromium:service_worker": "src/background.ts",
+    "firefox:scripts": ["src/background.ts"],
+    "type": "module"
+  },
+  "action": {
+    "firefox:default_area": "navbar"
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "linkedzen@bo-carey"
