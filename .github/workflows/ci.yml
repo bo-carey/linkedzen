@@ -1,0 +1,32 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+
+  build:
+    name: Create Artifacts
+    runs-on: ubuntu-latest
+
+    steps:
+      #Initialization
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      # Create Chrome artifacts
+      - name: Create Chrome artifacts
+        run: npm run build:chrome
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ChromeExtension
+          path: dist
+      
+      # Create Firefox artifacts
+      - name: Create Firefox artifacts
+        run: npm run build:firefox
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FirefoxExtension
+          path: dist
