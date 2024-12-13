@@ -3,8 +3,11 @@
   "version": "0.0.3",
   "type": "module",
   "scripts": {
-    "build": "npm run clean && run-s build:*",
-    "build:chrome": "extension build --browser chrome --zip true --zip-filename linkedzen --zip-source true",
+    "build": "extension build --browser all --zip true --zip-filename linkedzen --zip-source true --polyfill",
+    "build:ci:chrome": "extension build --browser chrome --polyfill",
+    "build:ci:firefox": "extension build --browser firefox",
+    "build:ci:edge": "extension build --browser edge --polyfill",
+    "build:ci:source": "extension build --zip-source --zip-filename linkedzen --polyfill",
     "build:firefox": "extension build --browser firefox --zip true --zip-filename linkedzen",
     "clean": "rm -rf dist",
     "dev": "npm run clean && run-s dev:firefox dev:chrome",
