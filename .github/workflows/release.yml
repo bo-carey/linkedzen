@@ -1,0 +1,92 @@
+name: Upload Release Build
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Create directory
+        run: cd ..; mkdir ./builds
+
+      # Zip the source code
+      - name: Zip Source
+        run: zip -r ../builds/Source.zip *
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Create build directory
+      - name: Create build directory
+        run: mkdir ./builds
+
+      # Build for Firefox, Chrome and Edge
+      - name: Build for Firefox
+        run: npm run build:ci:firefox
+      - name: Build for Chrome
+        run: npm run build:ci:chrome
+      - name: Build for Edge
+        run: npm run build:ci:edge
+
+      # Sign & Upload Firefox artifacts
+      - name: Sign and Publish artifact
+        continue-on-error: true
+        env:
+          FIREFOX_ISSUER: ${{ secrets.FIREFOX_ISSUER }}
+          FIREFOX_SECRET: ${{ secrets.FIREFOX_SECRET }}
+        run: npx web-ext sign --channel listed -s ./dist/firefox/ --upload-source-code  ../builds/Source.zip --artifacts-dir ./dist/firefox --api-key $FIREFOX_ISSUER --api-secret $FIREFOX_SECRET
+      - name: Move artifact
+        run: mv ./dist/firefox/linkedzen-*.xpi ./builds/FirefoxExtension.xpi
+      - name: Upload FirefoxExtension to release
+        uses: Shopify/upload-to-release@07611424e04f1475ddf550e1c0dd650b867d5467
+        with:
+          name: FirefoxExtension.xpi
+          path: ./builds/FirefoxExtension.xpi
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Zip Chrome Artifacts
+        run: cd ./dist/chrome ; zip -r ../../builds/ChromeExtension.zip *
+      - name: Upload ChromeExtension to release
+        uses: Shopify/upload-to-release@07611424e04f1475ddf550e1c0dd650b867d5467
+        with:
+          name: ChromeExtension.zip
+          path: ./builds/ChromeExtension.zip
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to Chrome Web Store
+        continue-on-error: true
+        uses: wdzeng/chrome-extension@v1
+        with:
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          zip-path: './builds/ChromeExtension.zip'
+          extension-id: 'dnikkfpiokknefbehlodocadfgkmgdem'
+
+      # Upload Edge artifacts
+      - name: Zip Edge Artifacts
+        run: cd ./dist/edge ; zip -r ../../builds/EdgeExtension.zip *
+      - name: Upload EdgeExtension to release
+        uses: Shopify/upload-to-release@07611424e04f1475ddf550e1c0dd650b867d5467
+        with:
+          name: EdgeExtension.zip
+          path: ./builds/EdgeExtension.zip
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to Edge Addon Store
+        continue-on-error: true
+        uses: wdzeng/edge-addon@v2
+        with:
+          product-id: 1324a294-9b30-4908-ae5d-7fed25018381
+          zip-path: ./builds/EdgeExtension.zip
+          api-key: ${{ secrets.EDGE_CLIENT_SECRET }}
+          client-id: ${{ secrets.EDGE_CLIENT_ID }}
