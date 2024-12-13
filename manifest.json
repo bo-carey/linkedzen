@@ -2,7 +2,7 @@
   "name": "LinkedZen",
   "description": "LinkedZen declutters LinkedIn by hiding the feed, sponsored content, and notifications. Focus on connections without distractions.",
   "manifest_version": 3,
-  "version": "0.0.3",
+  "version": "0.0.7",
   "icons": {
     "16": "assets/logo-16.png",
     "48": "assets/logo-48.png",
